@@ -37,7 +37,7 @@ MainWindow::MainWindow(QWidget *parent)
             this, &MainWindow::onProcessOutput);
 
     connect(m_process,
-            QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+            static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished),
             this, &MainWindow::onProcessFinished);
 }
 
